@@ -7,36 +7,40 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Singleton
-public class PopulateDynamoDb {
+public class DataGenerator {
     private final FlightRepository flightRepository;
     private static final int BATCH_SIZE = 25;
 
-    public PopulateDynamoDb(FlightRepository flightRepository) {
+    public DataGenerator(FlightRepository flightRepository) {
         this.flightRepository = flightRepository;
     }
 
     private static final String[] BRAZILIAN_AIRPORTS = {
-            "GRU", "GIG", "CGH", "BSB", "CNF", "SSA", "POA", "REC", "FOR", "BEL",
-            "VCP", "SDU", "CWB", "MAO", "FLN", "GYN", "NAT", "CGB", "BVB", "THE",
+            "GRU", "GIG", "BSB", "CNF", "SSA", "POA", "REC", "FOR", "BEL", "RAO",
+            "VCP", "CWB", "MAO", "FLN", "GYN", "NAT", "CGB", "BVB", "THE", "UDI",
             "JPA", "MCZ", "MCP", "PET", "IGU", "CGR", "AJU", "JDO", "IMP", "SLZ"
     };
+
+    private static final Set<String> HUBS = Set.of("GRU", "GIG", "POA", "BSB", "CNF", "REC", "SSA", "VCP", "FOR");
 
     private static final String[] BRAZILIAN_AIRLINES = {
             "GOL", "LATAM", "AZUL"
     };
 
     public void populate() {
-        int routes = 435;
-        int faresPerRoute = 10;
+        int routes = 870;
         Random random = new Random();
         Set<String> uniqueRoutes = generateRoutes(routes);
 
         uniqueRoutes.parallelStream()
             .forEach(route -> {
                 List<Map<String, AttributeValue>> flights = new ArrayList<>();
-                for (int i = 0; i < faresPerRoute; i++) {
+                String[] parts = route.split("-");
+                int dynamicFares = getFaresPerRoute(parts[0], parts[1]);
+                for (int i = 0; i < dynamicFares; i++) {
                 flights.add(generateRandomFare(route, random));
                 if (flights.size() > BATCH_SIZE) {
                     flightRepository.putFare(flights);
@@ -63,6 +67,13 @@ public class PopulateDynamoDb {
         while (uniqueRoutes.size() < routes);
 
         return uniqueRoutes;
+    }
+
+    private int getFaresPerRoute(String origin, String destination) {
+        boolean isHub = HUBS.contains(origin) || HUBS.contains(destination);
+
+        if (isHub) return 20;
+        return 5;
     }
 
     private Map<String, AttributeValue> generateRandomFare( String route, Random random) {

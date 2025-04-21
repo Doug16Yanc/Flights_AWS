@@ -2,26 +2,27 @@ package douglas.controller;
 
 import douglas.model.Flight;
 import douglas.repository.FlightRepository;
-import douglas.utils.PopulateDynamoDb;
+import douglas.utils.DataGenerator;
 import io.micronaut.http.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller("/flights")
 public class FlightController {
 
     private final FlightRepository flightRepository;
-    private final PopulateDynamoDb populateDynamoDb;
+    private final DataGenerator dataGenerator;
 
-    public FlightController(FlightRepository flightRepository, PopulateDynamoDb populateDynamoDb) {
+    public FlightController(FlightRepository flightRepository, DataGenerator dataGenerator) {
         this.flightRepository = flightRepository;
-        this.populateDynamoDb = populateDynamoDb;
+        this.dataGenerator = dataGenerator;
     }
 
     @Post("/create-flights")
     public String createFlight() {
-        populateDynamoDb.populate();
-        return "DynamoDb populado com sucesso";
+        dataGenerator.populate();
+        return "DynamoDb populado com sucesso!";
     }
 
     @Get("/cheapest/{route}")

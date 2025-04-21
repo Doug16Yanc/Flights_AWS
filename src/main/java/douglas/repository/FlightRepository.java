@@ -51,7 +51,7 @@ public class FlightRepository {
         dynamoDbClient.batchWriteItem(batchRequest);
     }
 
-    /*Três voos mais baratos*/
+    /*Cinco voos mais baratos*/
     public List<Flight> findCheapestFlightByRoute(String route) {
 
         long now = Instant.now().getEpochSecond();
@@ -74,7 +74,7 @@ public class FlightRepository {
                 .collect(Collectors.toList());
     }
 
-    /*Três voos mais caros*/
+    /*Cinco voos mais caros*/
     public List<Flight> findExpensiveFlightByRoute(String route) {
 
         long now = Instant.now().getEpochSecond();
