@@ -1,38 +1,30 @@
-## Micronaut 4.8.2 Documentation
+<h1 align="center" width="100%"> Cache de passagens aéreas </h1>
 
-- [User Guide](https://docs.micronaut.io/4.8.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.8.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.8.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
 
----
+<h3 align="center"> Java 21 + Amazon DynamoDB + Terraform </h3>
 
-- [Micronaut Gradle Plugin documentation](https://micronaut-projects.github.io/micronaut-gradle-plugin/latest/)
-- [GraalVM Gradle Plugin documentation](https://graalvm.github.io/native-build-tools/latest/gradle-plugin.html)
-- [Shadow Gradle Plugin](https://gradleup.com/shadow/)
 
-## Feature validation documentation
+  <p align="center">
 
-- [Micronaut Validation documentation](https://micronaut-projects.github.io/micronaut-validation/latest/guide/)
+  <img alt="Java" src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)">
+  <img alt="Amazon DynamoDB" src="https://img.shields.io/badge/Amazon%20DynamoDB-4053D6?style=for-the-badge&logo=Amazon%20DynamoDB&logoColor=white">
+  <img alt="Terraform" src="https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white">
+  
+  </p>
 
-## Feature micronaut-aot documentation
+  <h1 align="center"> Descrição </h1>
 
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
+  <p>
+    Resolução de problema de cache de passagens aéreas baseado no desafio da holandesa Travix. O problema consiste em construir um sistema de cache de tarifas
+    altamente escalável 
+  </p>
 
-## Feature serialization-jackson documentation
+  <h1 align="center"> Tecnologias utilizadas </h1>
 
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
-## Feature aws-v2-sdk documentation
-
-- [Micronaut AWS SDK 2.x documentation](https://micronaut-projects.github.io/micronaut-aws/latest/guide/)
-
-- [https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/welcome.html](https://docs.aws.amazon.com/sdk-for-java/v2/developer-guide/welcome.html)
-
-## Feature dynamodb documentation
-
-- [Micronaut Amazon DynamoDB documentation](https://micronaut-projects.github.io/micronaut-aws/latest/guide/#dynamodb)
-
-- [https://aws.amazon.com/dynamodb/](https://aws.amazon.com/dynamodb/)
+  * Java 21.
+  * Micronaut.
+  * Localstack AWS.
+  * Amazon DynamoDB.
+  * Terraform.
 
 
